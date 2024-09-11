@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><3</title>
+    <link rel="icon" type="image/x-icon" href="image.ico">
+    <style>
+        /* Basic page styles */
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Centered header text */
+        .header {
+            color: rgb(238, 50, 238);
+            text-align: center;
+            margin-top: 20px;
+            white-space: pre; /* This allows the ASCII art to retain its spacing */
+            font-size: 22px;
+        }
+
+        /* Clickable text under the header */
+        .header-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .header-links a {
+            color: rgb(238, 50, 238);
+            text-decoration: none;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .header-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Container for stars */
+        .star-container {
+            position: relative;
+            height: 1500px; /* Adjusted height */
+        }
+
+        /* Style for stars */
+        .star {
+            position: absolute;
+            color: rgb(238, 50, 238);
+            font-size: 16px;
+        }
+
+        /* Style for the scroll button */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Style for the scroll button */
+        .scroll-button {
+            display: none;
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: rgb(238, 50, 238);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.3s ease; /* Optional: Adds a fade effect when showing/hiding */
+        }
+
+        /* Add a smooth transition effect when the button appears/disappears */
+        .scroll-button.show {
+            opacity: 1;
+        }
+
+        .scroll-button.hide {
+            opacity: 0;
+        }
+
+        /* Extra content to allow scrolling */
+        .content {
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* Bottom title for "My Projects" */
+        .projects-title {
+            text-align: center;
+            font-size: 28px;
+            color: rgb(238, 50, 238);
+            position: absolute; /* Use absolute positioning */
+            width: 100%;
+            bottom: 50px; /* Adjusted */
+            top: 1400px; /* Removed top positioning */
+        }
+
+        /* Style for project containers */
+        .projects-container {
+            display: flex;
+            justify-content: center; /* Centers the projects */
+            flex-wrap: wrap; /* Allows wrapping to a new line if there are more than 3 items */
+            gap: 20px; /* Adds spacing between items */
+            padding: 20px; /* Add some padding to the container */
+            margin-top: -300px; /* Adjust this value to move the container higher */
+        }
+
+        /* ASCII box style for each project */
+        .project {
+            border: 2px solid rgb(238, 50, 238);
+            padding: 10px;
+            width: 300px;
+            color: white;
+            font-size: 16px;
+            white-space: pre;
+            text-align: center; /* Center text horizontally */
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: lightgray;
+            margin-bottom: 10px;
+            white-space: pre-wrap; /* Ensure ASCII art wraps correctly */
+        }
+
+        .project-link {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            position: relative; /* Add relative positioning */
+            z-index: 1; /* Ensure it is above other elements */
+        }
+
+        .project-link a {
+            color: rgb(238, 50, 238);
+            text-decoration: none;
+            font-size: 16px;       /* Ensure the font size is appropriate */
+        }
+
+        .project-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer styles */
+        .footer {
+            border-top: 2px solid rgb(238, 50, 238);
+            padding: 20px;
+            color: white;
+            text-align: center;
+            margin-top: 100px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Centered header with ASCII art -->
+    <div class="header">
+ _           _       
+| |         | |      
+| | ____   _| |_ ___ 
+| |/ /\ \ / / __/ __|
+|   <  \ V /| |_\__ \
+|_|\_\  \_/  \__|___/
+i like to code
+
+</div>
+
+    <!-- Clickable text under the header -->
+    <div class="header-links">
+        <a id="scrollToBottomLink">/my projects</a>
+        <a href="https://github.com/meowistic" target="_blank">/github</a>
+        
+        <!--<a href="#">/</a> -->
+    </div>
+
+    <!-- Container where stars will be added -->
+    <div class="star-container" id="star-container">
+        <!-- Stars will be dynamically inserted here -->
+    </div>
+
+    <!-- Title at the bottom of the page -->
+    <div class="projects-title" id="projects-title">
+        
+pinned projects
+    </div>
+
+    <!-- Projects container -->
+    <div class="projects-container">
+        <!-- Project 1 -->
+        <div class="project">
+            <div class="project-title"><span style="color: #e7ca22">☆ osint tool ☆</span></div>
+            <div class="project-description">
++----------------------+
+| A discord bot that   |
+| allows you to find   |
+| anything about anyone|
+| by scraping databases|
+| court records,       |
+| private accounts and |
+| so on..              |
++----------------------+
+            </div>
+            <div class="project-link">
+                <a href="https://discord.gg/JTy6HvmRwy" target="_blank">join server</a>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project">
+            <div class="project-title">minecraft username
+checker</div>
+            <div class="project-description">
++-----------------------+
+| An automated username |
+| checker/generator     |
+| for minecraft. very   |
+| useful for finding    |
+| rare 3-4 letter names |
++-----------------------+
+            </div>
+            <div class="project-link">
+                <a href="https://github.com/meowistic/mc-gen" target="_blank">download on github</a>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project">
+            <div class="project-title">more projects..</div>
+            <div class="project-description">
++----------------------+
+| To see more projects,|
+| feel free to check my|
+| <a href="https://github.com/meowistic" style="color: rgb(238, 50, 238); text-decoration: none;">github</a> or join my    |
+| discord server with  |
+| the link below.      |
++----------------------+</div>
+            <div class="project-link">
+                <a href="https://discord.gg/JTy6HvmRwy" target="_blank">contact me on
+discord
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Made with ♥ by kvts
+    </div>
+
+    <script>
+        const starContainer = document.getElementById('star-container');
+        const scrollToBottomLink = document.getElementById('scrollToBottomLink');
+        const projectsTitle = document.getElementById('projects-title');
+        const maxStars = 100; // Max number of stars to show at once
+        const stars = []; // Array to hold references to star elements
+
+        // Function to create a random star
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.textContent = '*';
+            // Randomize position of stars within the container
+            star.style.left = Math.random() * window.innerWidth + 'px';
+            star.style.top = Math.random() * window.innerHeight + 'px';
+            starContainer.appendChild(star);
+            return star;
+        }
+
+        // Function to remove all stars
+        function clearStars() {
+            stars.forEach(star => starContainer.removeChild(star));
+            stars.length = 0;
+        }
+
+        // Event listener for scrolling
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            const scrollLimitForStars = 100; // When to start showing stars
+
+            // Remove stars if scrolling up
+            if (scrollY < scrollLimitForStars) {
+                clearStars();
+            }
+
+            // Add stars progressively on scroll
+            if (scrollY > scrollLimitForStars && stars.length < maxStars) {
+                const star = createStar();
+                stars.push(star); // Keep track of added stars
+            }
+
+            // Position the "My Projects" title based on the end of the stars container
+            const starContainerHeight = starContainer.getBoundingClientRect().height;
+            projectsTitle.style.bottom = (window.innerHeight - starContainerHeight - 50) + 'px'; // Adjusted for new height
+        });
+
+        // Scroll to the bottom when the link is clicked
+        scrollToBottomLink.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            document.getElementById('projects-title').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
