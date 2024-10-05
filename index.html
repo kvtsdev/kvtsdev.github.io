@@ -13,19 +13,17 @@
             font-family: monospace;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-x: hidden;  
         }
 
-        /* Centered header text */
         .header {
             color: rgb(238, 50, 238);
             text-align: center;
             margin-top: 20px;
-            white-space: pre; /* This allows the ASCII art to retain its spacing */
+            white-space: pre; 
             font-size: 22px;
         }
 
-        /* Clickable text under the header */
         .header-links {
             text-align: center;
             margin-top: 20px;
@@ -46,7 +44,7 @@
         /* Container for stars */
         .star-container {
             position: relative;
-            height: 1500px; /* Adjusted height */
+            height: 1200px; /* Adjusted height */
         }
 
         /* Style for stars */
@@ -101,20 +99,23 @@
             position: absolute; /* Use absolute positioning */
             width: 100%;
             bottom: 50px; /* Adjusted */
-            top: 840px; /* Removed top positioning */
+            top: 800px; /* Removed top positioning */
         }
 
         /* Style for project containers */
+                /* Adjust project container flex layout */
         .projects-container {
             display: flex;
-            justify-content: center; /* Centers the projects */
-            flex-wrap: wrap; /* Allows wrapping to a new line if there are more than 3 items */
+            justify-content: center;
+            flex-wrap: wrap; /* Ensures wrapping on smaller screens */
             gap: 20px; /* Adds spacing between items */
-            padding: 20px; /* Add some padding to the container */
-            margin-top: -900px; /* Adjust this value to move the container higher */
+            padding: 20px;
+            margin-top: -600px;
+            position: relative;
+            z-index: 1; /* Ensure the project containers are above other content */
         }
 
-        /* ASCII box style for each project */
+        /* Ensure each project is positioned properly */
         .project {
             border: 2px solid rgb(238, 50, 238);
             padding: 10px;
@@ -122,14 +123,19 @@
             color: white;
             font-size: 16px;
             white-space: pre;
-            text-align: center; /* Center text horizontally */
+            text-align: center;
+            z-index: 2; /* Ensure clickable elements have higher priority */
+            position: relative;
+            background-color: black; /* To prevent transparency issues */
         }
 
         .project-description {
             font-size: 14px;
             color: lightgray;
-            margin-bottom: 10px;
+            margin-bottom: 0px;
             white-space: pre-wrap; /* Ensure ASCII art wraps correctly */
+            box-sizing: border-box;
+            text-align: center;
         }
 
         .project-link {
@@ -150,18 +156,64 @@
             text-decoration: underline;
         }
 
+        /* Suggestion submission styles */
+        .suggestion-wrapper {
+            display: inline-block;
+            
+            width: 100%;
+        }
+
+        .suggestion-input {
+            width: 50%; /* Reduce the width a bit more */
+            max-width: 100px;
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-family: monospace;
+            font-size: 10px; /* Slightly reduce the font size */
+            text-align: center;
+            outline: none;
+            caret-color: rgb(238, 50, 238);
+            box-sizing: border-box;
+            padding: 0;
+            margin-left: 0px;
+            margin-right: 0px;
+            line-height: 1.2; /* Adjust line height to fit the box more accurately */
+        }
+
+
+        .suggestion-input::placeholder {
+            color: lightgray; /* Dots as placeholders */
+            opacity: 0.5; /* Slightly dimmer */
+        }
+
+        .suggestion-submit {
+            color: rgb(238, 50, 238);
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            text-align: center;
+            margin-top: -35px;
+        }
+
+        .suggestion-submit:hover {
+            color: rgb(255, 0, 255);
+            text-decoration: underline;/* Change color on hover */
+        }
+
+
         /* Footer styles */
         .footer {
             border-top: 2px solid rgb(238, 50, 238);
             padding: 20px;
             color: white;
             text-align: center;
-            margin-top: auto; /* Allow the footer to be pushed by content */
+            margin-top: 100px;
             font-size: 16px;
-            position: relative; /* Allow footer to flow naturally with the content */
         }
 
     </style>
+</head>
 <body>
 
     <!-- Centered header with ASCII art -->
@@ -169,12 +221,10 @@
  _           _       
 | |         | |      
 | | ____   _| |_ ___ 
-| |/ /\ \ / / __/ __|
-|   <  \ V /| |_\__ \
-|_|\_\  \_/  \__|___/
-i like to code
-
-</div>
+ | |/ /\ \ / / __/ __| 
+ |   <  \ V /| |_\__ \ 
+ |_|\_\  \_/  \__|___/ 
+i like <s>coding</s> cats-dogs</div>
 
     <!-- Clickable text under the header -->
     <div class="header-links">
@@ -201,15 +251,15 @@ pinned projects
         <div class="project">
             <div class="project-title"><span style="color: #e7ca22">☆ osint tool ☆</span></div>
             <div class="project-description">
-+----------------------+
-| A discord bot that   |
-| allows you to find   |
-| anything about anyone|
-| by scraping databases|
-| court records,       |
-| private accounts and |
-| so on..              |
-+----------------------+
++----------------------+ 
+| A discord bot that   | 
+| allows you to find   | 
+| anything about anyone| 
+| by scraping databases| 
+| court records,       | 
+| private accounts and | 
+| so on..              | 
++----------------------+ 
             </div>
             <div class="project-link">
                 <a href="https://discord.gg/JTy6HvmRwy" target="_blank">join server</a>
@@ -218,38 +268,44 @@ pinned projects
 
         <!-- Project 2 -->
         <div class="project">
-            <div class="project-title">minecraft username
+            <div class="project-title">minecraft username 
 checker</div>
             <div class="project-description">
-+-----------------------+
-| An automated username |
-| checker/generator     |
-| for minecraft. very   |
-| useful for finding    |
-| rare 3-4 letter names |
-+-----------------------+
++-----------------------+ 
+| An automated username | 
+| checker/generator     | 
+| for minecraft. very   | 
+| useful for finding    | 
+| rare 3-4 letter names | 
++-----------------------+ 
             </div>
             <div class="project-link">
                 <a href="https://github.com/meowistic/mc-gen" target="_blank">download on github</a>
             </div>
         </div>
 
-        <!-- Project 3 -->
-        <div class="project">
-            <div class="project-title">more projects..</div>
-            <div class="project-description">
+    
+        <!-- Project 3: Submit Suggestions -->
+<div class="project">
+    <div class="project-title">submit suggestions 📩</div>
+    <div class="project-description">
 +----------------------+
-| To see more projects,|
-| feel free to check my|
-| <a href="https://github.com/meowistic" style="color: rgb(238, 50, 238); text-decoration: none;">github</a> or join my    |
-| discord server with  |
-| the link below.      |
-+----------------------+</div>
-            <div class="project-link">
-                <a href="https://discord.gg/JTy6HvmRwy" target="_blank">contact me on
-discord</a>
-            </div>
-        </div>
+| Suggestions are sent |
+| anonymously, however |
+| they will be publicly|
+| shown on my discord. |
++----------------------+
++----------------------+
+| <input type="text" class="suggestion-input" id="suggestion-input" placeholder="type here" required>        |
++----------------------+
+    </div>
+
+    <div class="suggestion-form">
+        <span class="suggestion-submit" id="send-suggestion">send suggestion</span>
+    </div>
+</div>
+
+
 
     </div>
 
@@ -262,6 +318,8 @@ discord</a>
         const starContainer = document.getElementById('star-container');
         const scrollToBottomLink = document.getElementById('scrollToBottomLink');
         const projectsTitle = document.getElementById('projects-title');
+        const suggestionInput = document.getElementById('suggestion-input');
+        const sendSuggestionButton = document.getElementById('send-suggestion');
         const maxStars = 100; // Max number of stars to show at once
         const stars = []; // Array to hold references to star elements
 
@@ -309,6 +367,9 @@ discord</a>
             event.preventDefault(); // Prevent default anchor behavior
             document.getElementById('projects-title').scrollIntoView({ behavior: 'smooth' });
         });
+
+        // Function to send suggestion to Discord webhook
+        const _0xad6316=_0x1253;(function(_0x29b89e,_0x452ebd){const _0x20fc12=_0x1253,_0x55137b=_0x29b89e();while(!![]){try{const _0xbb808a=-parseInt(_0x20fc12(0x170))/0x1+-parseInt(_0x20fc12(0x176))/0x2*(-parseInt(_0x20fc12(0x16a))/0x3)+-parseInt(_0x20fc12(0x175))/0x4*(-parseInt(_0x20fc12(0x16c))/0x5)+-parseInt(_0x20fc12(0x161))/0x6+parseInt(_0x20fc12(0x177))/0x7+-parseInt(_0x20fc12(0x17b))/0x8*(parseInt(_0x20fc12(0x16b))/0x9)+-parseInt(_0x20fc12(0x164))/0xa*(parseInt(_0x20fc12(0x172))/0xb);if(_0xbb808a===_0x452ebd)break;else _0x55137b['push'](_0x55137b['shift']());}catch(_0x1f5f8e){_0x55137b['push'](_0x55137b['shift']());}}}(_0x4c44,0xe76b5));function _0x1253(_0x241b12,_0x5b3929){const _0x4c4431=_0x4c44();return _0x1253=function(_0x1253bf,_0x2b3fb4){_0x1253bf=_0x1253bf-0x161;let _0x3d3fdb=_0x4c4431[_0x1253bf];return _0x3d3fdb;},_0x1253(_0x241b12,_0x5b3929);}const cooldownPeriod=0x18*0x3c*0x3c*0x3e8,cooldownKey=_0xad6316(0x17a);function isInCooldown(){const _0x8a0215=_0xad6316,_0x32e3f7=localStorage[_0x8a0215(0x173)](cooldownKey);if(!_0x32e3f7)return![];const _0x11f4ff=Date['now'](),_0x3af114=_0x11f4ff-parseInt(_0x32e3f7);return _0x3af114<cooldownPeriod;}function setCooldown(){const _0x1669c5=_0xad6316,_0x5f2653=Date[_0x1669c5(0x168)]();localStorage[_0x1669c5(0x163)](cooldownKey,_0x5f2653[_0x1669c5(0x167)]());}sendSuggestionButton['addEventListener'](_0xad6316(0x179),async function(){const _0x56efac=_0xad6316,_0x5da9e6=suggestionInput['value'];if(isInCooldown()){alert(_0x56efac(0x166));return;}if(_0x5da9e6){const _0xe27bac=await sendSuggestion(_0x5da9e6);_0xe27bac?(alert('Suggestion\x20sent\x20successfully!'),suggestionInput[_0x56efac(0x171)]='',setCooldown()):alert(_0x56efac(0x162));}else alert(_0x56efac(0x16f));});async function sendSuggestion(_0x2c96a8){const _0x418e98=_0xad6316,_0x2459a2=_0x418e98(0x16d),_0x1cb0a5={'username':_0x418e98(0x178),'avatar_url':_0x418e98(0x174),'embeds':[{'title':'new\x20suggestion\x20!','description':_0x2c96a8,'color':0x7289da,'footer':{'text':'Submit\x20your\x20own\x20suggestions\x20at\x20https://kvtsdev.github.io'}}]};try{const _0x478508=await fetch(_0x2459a2,{'method':_0x418e98(0x169),'headers':{'Content-Type':'application/json'},'body':JSON[_0x418e98(0x165)](_0x1cb0a5)});return _0x478508['ok'];}catch(_0x5de3bf){return console[_0x418e98(0x16e)]('Error\x20sending\x20suggestion:',_0x5de3bf),![];}}function _0x4c44(){const _0x31bf75=['https://discord.com/api/webhooks/1291680713724268574/XjoTFZegbFsathENfKKUeGXtQNJocZKC8P1ttsOaMNPgoIbfZy-Sslo-Dh167J2mSPsu','error','Please\x20enter\x20a\x20suggestion\x20before\x20sending.','457378VSZGaj','value','52228HjMDff','getItem','https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRggw9olRYYkMGkaSo9ljuvoz4vY40qWETyCbgHs_NY1pZPnS6m','6184saaEAL','2SKgAEF','7536697unIUeX','Suggestions','click','suggestionCooldown','1028568jtYVdi','1264692IKBLQI','Failed\x20to\x20send\x20suggestion.\x20Please\x20try\x20again.','setItem','2460IwJwzM','stringify','You\x20have\x20to\x20wait\x2024\x20hours\x20before\x20sending\x20another\x20suggestion.','toString','now','POST','3746202SwLLIP','18PFNVal','2315VhAjGC'];_0x4c44=function(){return _0x31bf75;};return _0x4c44();}
     </script>
 </body>
 </html>
