@@ -1,0 +1,342 @@
+/* Basic Reset */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #FFF9DB; /* Pastel yellow background */
+    color: #444;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Header Styling */
+.main-header {
+    background-color: #D4E6B5; /* Light green */
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.main-header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.main-header nav ul li a {
+    text-decoration: none;
+    color: #2C3E50;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.main-header nav ul li a:hover {
+    color: #34495E;
+}
+
+/* Section Styling */
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 60px; /* Adjust for fixed header */
+}
+
+.about-section {
+    background-color: #FFF9DB;
+    position: relative;
+}
+
+/* Cat GIF Styling */
+.cat-gif-container {
+    position: relative;
+    top: -40px; /* Adjust as needed to place above 'kvts' */
+    margin-bottom: -20px;
+}
+
+.cat-gif {
+    width: 120px; /* Adjust size */
+}
+
+/* Projects Section */
+.projects-section {
+    background-color: #F8D1D1; /* Soft pastel pink */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Peeking Cat for Projects Section */
+.peeking-cat-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.peeking-cat {
+    width: 150px; /* Adjust size of the peeking cat */
+}
+
+/* Headings */
+h1, h2 {
+    color: #2C3E50;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Paragraphs */
+p {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin-bottom: 1.5rem;
+}
+
+/* ... [Existing CSS above remains unchanged] ... */
+
+/* Project Cards */
+.project-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.project-card {
+    background-color: #F9F9F9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    
+    /* Flexbox for vertical alignment */
+    display: flex;
+    flex-direction: column;
+    
+    /* Ensure all cards have the same height */
+    /* Optional: You can set a min-height if needed */
+    /* min-height: 350px; */
+}
+
+.project-card h3 {
+    color: #34495E;
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    font-size: 1rem;
+    margin-bottom: 20px; /* Space between description and button */
+    flex-grow: 1; /* Allow paragraph to take up available space */
+}
+
+/* New Project Button Styling */
+/* Add this new style for the buttons container */
+.project-buttons {
+    display: flex; 
+    flex-direction: column; /* Arrange buttons vertically */
+    gap: 10px; /* Space between buttons */
+    margin-top: auto; /* Pushes buttons to the bottom of the card */
+}
+
+/* Ensure buttons are styled correctly */
+.project-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    background-color: #7289DA; /* Discord blue */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    
+    /* Ensure buttons are the same width */
+    width: 100%;
+    text-align: center;
+}
+
+.project-button:hover {
+    background-color: #5b6eae;
+    transform: translateY(-2px);
+}
+
+
+/* ... [Rest of your existing CSS below remains unchanged] ... */
+
+
+/* Skills List */
+.skills-list {
+    list-style: none;
+    padding: 0;
+}
+
+.skills-list li {
+    font-size: 1.25rem;
+    padding: 5px;
+}
+
+/* Scroll Button */
+.scroll-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    background-color: #D4E6B5; /* Light green */
+    color: #2C3E50;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.scroll-button:hover {
+    background-color: #C5DBA3;
+}
+
+/* Discord Section */
+.discord-section {
+    background-color: #F3E1F5; /* Soft pastel lavender */
+    position: relative; /* Needed for absolute positioning of the cat image */
+    padding: 60px;
+}
+
+.cat-image-container {
+    position: absolute; /* Allows for positioning relative to the nearest positioned ancestor */
+    top: 20px; /* Adjusts the distance from the top */
+    right: 20px; /* Adjusts the distance from the right */
+    z-index: 5; /* Ensures it appears above other elements */
+}
+
+.top-right-cat {
+    width: 100px; /* Adjust size as needed */
+    border-radius: 10px; /* Optional: adds rounded corners */
+}
+
+
+.status-container {
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+#discord-status {
+    font-size: 1.5rem;
+    color: #2C3E50;
+}
+
+/* Footer Styling */
+/* Footer Styling */
+.footer {
+    background-color: #D4E6B5; /* Light green */
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    display: flex; /* Added for flexbox */
+    justify-content: center; /* Centering the footer content */
+    align-items: center; /* Centering items vertically */
+}
+
+.footer p {
+    font-size: 1rem;
+    color: #2C3E50;
+    margin: 0; /* Ensure there's no default margin */
+}
+
+
+/* Discord Avatar */
+.discord-avatar {
+    width: 100px;
+    border-radius: 50%;
+    border: 4px solid #7289DA; /* Discord's signature color */
+}
+
+/* Discord Username */
+.discord-username {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #7289DA; /* Discord blue */
+    margin-top: 10px;
+}
+
+/* Discord Status */
+.discord-status {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Discord Section Styling */
+.discord-section {
+    background-color: #F3E1F5; /* Soft pastel lavender */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Make the section at least 100% of the viewport height */
+}
+
+/* Status Container */
+.status-container {
+    background-color: #2c2f33; /* Dark Discord theme color */
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures content inside the container is centered */
+    justify-content: center;
+}
+
+/* Adjustments to avoid duplication */
+.discord-avatar {
+    width: 100px;
+    border-radius: 50%;
+    border: 4px solid #7289DA; /* Discord's signature color */
+}
+
+.discord-username {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #7289DA; /* Discord blue */
+    margin-top: 10px;
+}
+
+.discord-status {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
