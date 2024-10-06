@@ -33,6 +33,8 @@
             'unknown': '#747f8d'
         };
 
+        let offlineSince = null; // Track when the user goes offline
+
         async function fetchDiscordStatus() {
             try {
                 const response = await fetch(`https://api.lanyard.rest/v1/users/${discordUserId}`);
@@ -42,11 +44,77 @@
                 const statusEmoji = statusEmojiMap[status];
                 const statusColor = statusColorMap[status];
 
-                document.querySelector('.status-container').innerHTML = `
-                    <img src="${avatarUrl}" alt="Discord Avatar" class="discord-avatar">
-                    <p class="discord-username">${username}</p>
-                    <p class="discord-status" style="color: ${statusColor};">${statusEmoji} ${status.charAt(0).toUpperCase() + status.slice(1)}</p>
-                `;
+                if (status === 'offline') {
+                    // If user goes offline, start tracking the offline time
+                    if (!offlineSince) {
+                        offlineSince = new Date();
+                    }
+
+                    // Calculate how long the user has been offline
+                    const now = new Date();
+                    const timeDifference = now - offlineSince;
+                    const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+                    // Display the countdown in offline status
+                    document.querySelector('.status-container').innerHTML = `
+                        <img src="${avatarUrl}" alt="Discord Avatar" class="discord-avatar">
+                        <p class="discord-username">${username}</p>
+                        <p class="discord-status" style="color: ${statusColor};">${statusEmoji} Offline for ${hours} hour(s) and ${minutes} minute(s)</p>
+                    `;
+                } else {
+                    offlineSince = null; // Reset offline time if the user is online
+
+                    let activityHtml = ''; // Variable to hold the activity display
+
+                    // Check if there are any activities
+                    let activities = data?.data?.activities || [];
+                    
+                    // Filter out the custom status (type 4 is for custom status)
+                    activities = activities.filter(activity => activity.type !== 4);
+                    
+                    if (activities.length > 0) {
+                        const currentActivity = activities[0]; // Get the first real activity
+                        const activityName = currentActivity.name;
+                        const activityType = currentActivity.type; // Type 0 = Playing, Type 2 = Listening
+                        const startTime = currentActivity.timestamps?.start;
+                        const now = new Date().getTime();
+                        
+                        // If there's a start time, calculate the duration
+                        let elapsedTime = '';
+                        if (startTime) {
+                            const duration = now - startTime; // Time difference in milliseconds
+                            const hours = Math.floor(duration / (1000 * 60 * 60));
+                            const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
+
+                            // Format the elapsed time in hours and minutes
+                            elapsedTime = `${hours > 0 ? hours + 'h ' : ''}${minutes}m`;
+                        }
+
+                        // Determine if playing or listening
+                        let activityText = '';
+                        if (activityType === 0) {
+                            // Playing a game or app
+                            activityText = `Playing ${activityName} ${elapsedTime ? `for ${elapsedTime}` : ''}`;
+                        } else if (activityType === 2) {
+                            // Listening to music
+                            activityText = `Listening to ${activityName} ${elapsedTime ? `for ${elapsedTime}` : ''}`;
+                        }
+
+                        // Build the activity display
+                        activityHtml = `
+                            <p class="discord-activity">${activityText}</p>
+                        `;
+                    }
+
+                    // Display the online status and current activity if available
+                    document.querySelector('.status-container').innerHTML = `
+                        <img src="${avatarUrl}" alt="Discord Avatar" class="discord-avatar">
+                        <p class="discord-username">${username}</p>
+                        <p class="discord-status" style="color: ${statusColor};">${statusEmoji} ${status.charAt(0).toUpperCase() + status.slice(1)}</p>
+                        ${activityHtml}
+                    `;
+                }
             } catch (error) {
                 console.error('Error fetching Discord status:', error);
             }
@@ -54,6 +122,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             fetchDiscordStatus();
+            setInterval(fetchDiscordStatus, 60000); // Check the status every 60 seconds
             handleAboutLinkClick();
         });
 
@@ -71,6 +140,8 @@
         }
     </script>
 
+    
+    
     <header class="main-header">
         <nav>
             <ul>
