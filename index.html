@@ -33,7 +33,7 @@
             'unknown': '#747f8d'
         };
 
-        let offlineSince = null; // Track when the user goes offline
+        let offlineSince = localStorage.getItem('offlineSince') ? new Date(localStorage.getItem('offlineSince')) : null;
 
         async function fetchDiscordStatus() {
             try {
@@ -45,9 +45,10 @@
                 const statusColor = statusColorMap[status];
 
                 if (status === 'offline') {
-                    // If user goes offline, start tracking the offline time
+                    // Only set offlineSince the first time the user goes offline
                     if (!offlineSince) {
                         offlineSince = new Date();
+                        localStorage.setItem('offlineSince', offlineSince); // Save to localStorage
                     }
 
                     // Calculate how long the user has been offline
@@ -63,23 +64,25 @@
                         <p class="discord-status" style="color: ${statusColor};">${statusEmoji} Offline for ${hours} hour(s) and ${minutes} minute(s)</p>
                     `;
                 } else {
-                    offlineSince = null; // Reset offline time if the user is online
+                    // Reset offlineSince and clear it from localStorage if the user is online
+                    offlineSince = null;
+                    localStorage.removeItem('offlineSince');
 
                     let activityHtml = ''; // Variable to hold the activity display
 
                     // Check if there are any activities
                     let activities = data?.data?.activities || [];
-                    
+
                     // Filter out the custom status (type 4 is for custom status)
                     activities = activities.filter(activity => activity.type !== 4);
-                    
+
                     if (activities.length > 0) {
                         const currentActivity = activities[0]; // Get the first real activity
                         const activityName = currentActivity.name;
                         const activityType = currentActivity.type; // Type 0 = Playing, Type 2 = Listening
                         const startTime = currentActivity.timestamps?.start;
                         const now = new Date().getTime();
-                        
+
                         // If there's a start time, calculate the duration
                         let elapsedTime = '';
                         if (startTime) {
@@ -119,6 +122,7 @@
                 console.error('Error fetching Discord status:', error);
             }
         }
+
 
         document.addEventListener('DOMContentLoaded', () => {
             fetchDiscordStatus();
