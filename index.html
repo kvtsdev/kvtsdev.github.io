@@ -1,224 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta content="kvts ^-^" property="og:title" />
-    <meta content="hiii this is my portfolio website :p" property="og:description" />
-   
-    <meta content="#FFD1DC" data-react-helmet="true" name="theme-color" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>kvts</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="image.ico">
+    <meta property="og:title" content="🐾 kvts" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kvtsdev.github.io/" />
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/968659758427037777/1300549082062000251/ae616c357081b72c08da6ad6d1f6a7d8.png?ex=67213e38&is=671fecb8&hm=a15bf12cc5d39a444eaeabf13631dd35aa09817994f9dcda5a3ab28d8fd1da84&" />
+    <meta property="og:description" content="combating malware and protecting children on the internet." />
+    <meta name="theme-color" content="#FF0000">
+    <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
-    <script>
-        const discordUserId = '958318834857672754';
-        const avatarHash = '6e6455596052240094b7f636785e7bcf';
-        const username = 'kvts';
+    <div id="terminal">
+        <div id="terminal-content">
+            <p class="output">🐾 Hii, I'm kvts!<span style="color: grey;">(kats•cats)</span></p>
+            <p id="current-time" class="output"></p>
+            <p class="output">Find out more about me ↓</p>
+            
 
-        const avatarUrl = `https://cdn.discordapp.com/avatars/${discordUserId}/${avatarHash}.png?size=4096`;
-
-        const statusEmojiMap = {
-            'online': '🟢',
-            'idle': '🌙',
-            'dnd': '⛔',
-            'offline': '⚫',
-            'unknown': '❓'
-        };
-
-        const statusColorMap = {
-            'online': '#43b581',
-            'idle': '#faa61a',
-            'dnd': '#f04747',
-            'offline': '#747f8d',
-            'unknown': '#747f8d'
-        };
-
-        let offlineSince = localStorage.getItem('offlineSince') ? new Date(localStorage.getItem('offlineSince')) : null;
-
-        async function fetchDiscordStatus() {
-            try {
-                const response = await fetch(`https://api.lanyard.rest/v1/users/${discordUserId}`);
-                const data = await response.json();
-
-                const status = data?.data?.discord_status ?? 'unknown';
-                const statusEmoji = statusEmojiMap[status];
-                const statusColor = statusColorMap[status];
-
-                if (status === 'offline') {
-                    // Only set offlineSince the first time the user goes offline
-                    if (!offlineSince) {
-                        offlineSince = new Date();
-                        localStorage.setItem('offlineSince', offlineSince); // Save to localStorage
-                    }
-
-                    // Calculate how long the user has been offline
-                    const now = new Date();
-                    const timeDifference = now - offlineSince;
-                    const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-
-                    // Display the countdown in offline status
-                    document.querySelector('.status-container').innerHTML = `
-                        <img src="${avatarUrl}" alt="Discord Avatar" class="discord-avatar">
-                        <p class="discord-username">${username}</p>
-                        <p class="discord-status" style="color: ${statusColor};">${statusEmoji} Offline for ${hours} hour(s) and ${minutes} minute(s)</p>
-                    `;
-                } else {
-                    // Reset offlineSince and clear it from localStorage if the user is online
-                    offlineSince = null;
-                    localStorage.removeItem('offlineSince');
-
-                    let activityHtml = ''; // Variable to hold the activity display
-
-                    // Check if there are any activities
-                    let activities = data?.data?.activities || [];
-
-                    // Filter out the custom status (type 4 is for custom status)
-                    activities = activities.filter(activity => activity.type !== 4);
-
-                    if (activities.length > 0) {
-                        const currentActivity = activities[0]; // Get the first real activity
-                        const activityName = currentActivity.name;
-                        const activityType = currentActivity.type; // Type 0 = Playing, Type 2 = Listening
-                        const startTime = currentActivity.timestamps?.start;
-                        const now = new Date().getTime();
-
-                        // If there's a start time, calculate the duration
-                        let elapsedTime = '';
-                        if (startTime) {
-                            const duration = now - startTime; // Time difference in milliseconds
-                            const hours = Math.floor(duration / (1000 * 60 * 60));
-                            const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
-
-                            // Format the elapsed time in hours and minutes
-                            elapsedTime = `${hours > 0 ? hours + 'h ' : ''}${minutes}m`;
-                        }
-
-                        // Determine if playing or listening
-                        let activityText = '';
-                        if (activityType === 0) {
-                            // Playing a game or app
-                            activityText = `Playing ${activityName} ${elapsedTime ? `for ${elapsedTime}` : ''}`;
-                        } else if (activityType === 2) {
-                            // Listening to music
-                            activityText = `Listening to ${activityName} ${elapsedTime ? `for ${elapsedTime}` : ''}`;
-                        }
-
-                        // Build the activity display
-                        activityHtml = `
-                            <p class="discord-activity">${activityText}</p>
-                        `;
-                    }
-
-                    // Display the online status and current activity if available
-                    document.querySelector('.status-container').innerHTML = `
-                        <img src="${avatarUrl}" alt="Discord Avatar" class="discord-avatar">
-                        <p class="discord-username">${username}</p>
-                        <p class="discord-status" style="color: ${statusColor};">${statusEmoji} ${status.charAt(0).toUpperCase() + status.slice(1)}</p>
-                        ${activityHtml}
-                    `;
-                }
-            } catch (error) {
-                console.error('Error fetching Discord status:', error);
-            }
-        }
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchDiscordStatus();
-            setInterval(fetchDiscordStatus, 60000); // Check the status every 60 seconds
-            handleAboutLinkClick();
-        });
-
-        function handleAboutLinkClick() {
-            const aboutLink = document.getElementById('about-link');
-            aboutLink.addEventListener('click', (event) => {
-                event.preventDefault();
-                document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
-                aboutLink.textContent = "you're here, dummy";
-            });
-
-            window.addEventListener('scroll', () => {
-                aboutLink.textContent = "About";
-            });
-        }
-    </script>
-
+            <div id="commands">
+                <button class="command-btn" data-command="about">about</button>
+                <button class="command-btn" data-command="contributions">contributions/stats</button>
+                <button class="command-btn" data-command="projects">recent projects</button>
+                <button class="command-btn" data-command="contact">contact</button>
+            </div>
     
-    
-    <header class="main-header">
-        <nav>
-            <ul>
-                <li><a href="#about" id="about-link">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#discord">Discord Status</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="about-section" id="about">
-        <div class="content">
-            <div class="cat-gif-container">
-                <img src="cat.gif" alt="kitty" class="cat-gif">
-            </div>
-            <h1>kvts <3</h1>
-            <p>I like programming, cats and dogs</p>
-            <a href="#projects" class="scroll-button">my projects!</a>
+            <div id="output-section"></div>
         </div>
-    </section>
-
-    <section class="projects-section" id="projects">
-        <div class="content">
-            <h2>my projects</h2>
-            <div class="project-cards">
-                <div class="project-card">
-                    <h3>minecraft username checker/generator</h3>
-                    <p>a small script that quickly checks and finds available 3-4 letter usernames, to show off</p>
-                    <div class="project-buttons">
-                        <a href="https://github.com/meowistic/mc-gen" class="project-button" target="_blank">Source code on github</a>
-                        <a href="https://raw.githubusercontent.com/meowistic/mc-gen/main/mc-gen.exe" class="project-button">Download (.exe)</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h3>OSINT/Pwnage tool</h3>
-                    <p>a discord bot on which you can run your info through, to check whether your account was compromised, or if there's any private information exposed on the internet.</p>
-                    <div class="project-buttons">
-                        <a href="https://discord.gg/ed5HwNGBW4" class="project-button" target="_blank">Join discord server</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h3>other projects</h3>
-                    <p>i plan/discuss other projects on my discord server!</p>
-                    <div class="project-buttons">
-                        <a href="https://discord.gg/ed5HwNGBW4" class="project-button" target="_blank">Join my community <3</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="peeking-cat-container">
-            <img src="gato.png" alt="Cat peeking" class="peeking-cat">
-        </div>
-    </section>
-
-    <section class="discord-section" id="discord">
-        <div class="content">
-            <h2>My Discord Status</h2>
-            <div class="status-container">
-                <p id="discord-status">Loading status...</p>
-            </div>
-        </div>
-        <div class="cat-image-container">
-            <img src="3cat.png" alt="Cat" class="top-right-cat"> 
-        </div>
-    </section>
-
-    <footer class="footer">
-        <p>© 2024 kvts | Built with ❤️ and code</p>
-    </footer>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
