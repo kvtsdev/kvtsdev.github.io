@@ -130,45 +130,41 @@ document.addEventListener('DOMContentLoaded', () => {
     function showProjects() {
         const projects = [
             {
-                name: 'nullchat ｜ under-the-radar file transfer and messaging app.',
-                codeUrl: '',
-                downloadUrl: ''
+                name: 'URL-mirror ｜ Mirror any link, letting you open malicious links remotely, bypass country blocks, and Wi-FI restrictions',
+                codeUrl: 'https://kvts.vercel.app',
+                downloadUrl: '',
+                buttonText: 'visit web'  // Specify unique text for this project
             },
             {
-                name: 'trying to make all my projects follow TOS publicly ;(',
+                name: 'nullchat ｜ under-the-radar file transfer and messaging app.',
                 codeUrl: '',
-                downloadUrl: ''
+                downloadUrl: '',
+                buttonText: 'coming soon...'  // Specify unique text for this project
             }
-           
         ];
-
+    
         const projectContainer = document.createElement('div');
         projectContainer.className = 'project-container';
-
+    
         projects.forEach(project => {
             const projectElement = document.createElement('div');
             projectElement.className = 'project';
-
+    
             const projectText = document.createElement('p');
             projectText.className = 'output';
             projectText.innerText = `> ${project.name}`; // Keep it terminal-like
-
+    
             const viewButton = document.createElement('button');
             viewButton.className = 'command-btn';
-            viewButton.innerText = 'coming soon..';
+            viewButton.innerText = project.buttonText;  // Use the buttonText property for each project
             viewButton.onclick = () => window.open(project.codeUrl, '_blank');
-
-/*          const downloadButton = document.createElement('button');
-            downloadButton.className = 'command-btn';
-            downloadButton.innerText = 'Download';
-            downloadButton.onclick = () => window.open(project.downloadUrl, '_blank'); */
-
+    
             projectElement.appendChild(projectText);
             projectElement.appendChild(viewButton);
-          //  projectElement.appendChild(downloadButton);
             projectContainer.appendChild(projectElement); 
         });
-
+    
         outputSection.appendChild(projectContainer);
     }
+    
 });
