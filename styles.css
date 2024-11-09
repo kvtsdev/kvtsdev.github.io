@@ -1,11 +1,9 @@
-/* Basic styling reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Background and terminal container */
 body {
     background: url('anim.gif') no-repeat center center fixed;
     background-size: cover;
@@ -36,7 +34,6 @@ body {
     white-space: pre-line;
 }
 
-/* Blinking underscore cursor */
 .blinking-underscore::after {
     content: '_';
     display: inline-block;
@@ -45,11 +42,11 @@ body {
 }
 
 .original-emoji {
-    color: inherit; /* This allows the emoji to take on its original color */
-    font-size: 1.5em; /* You can adjust the size if needed */
+    color: inherit; 
+    font-size: 1.5em; 
 }
 
-/* Blinking animation */
+
 @keyframes blink {
     0% { opacity: 1; }
     50% { opacity: 0; }
@@ -62,7 +59,6 @@ body {
     gap: 10px;
 }
 
-/* Styling for terminal-like command buttons */
 #commands {
     display: flex;
     flex-wrap: wrap;
@@ -91,27 +87,25 @@ body {
     border-color: #ff69b4;
 }
 
-/* Project container styling */
 .project-container {
     margin-top: 10px;
-    display: flex; /* Use flexbox to arrange items in a row */
-    flex-wrap: wrap; /* Allow wrapping for responsiveness */
-    gap: 10px; /* Space between project boxes */
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px; 
 }
 
 .project {
-    background-color: #222; /* Background color for terminal-like appearance */
-    border: 1px solid #00ff7f; /* Terminal border color */
+    background-color: #222; 
+    border: 1px solid #00ff7f; 
     padding: 10px;
     border-radius: 5px;
     transition: background-color 0.3s;
-    flex: 1 1 calc(50% - 10px); /* Allow 2 projects to fit per row, accounting for the gap */
+    flex: 1 1 calc(50% - 10px);
 }
 
-/* Add padding for buttons inside project containers */
 .project button {
-    margin-top: 10px; /* Space above the button */
-    padding: 8px 12px; /* Additional padding for button */
+    margin-top: 10px;
+    padding: 8px 12px; 
     background-color: transparent;
     color: #00ced1;
     border: 1px solid #00ff7f;
@@ -120,10 +114,10 @@ body {
 }
 
 .project button:hover {
-    background-color: #333; /* Darken on hover for better interaction */
+    background-color: #333; 
 }
 
-/* Blinking cursor effect */
+
 @keyframes blink {
     0% { opacity: 1; }
     50% { opacity: 0; }
