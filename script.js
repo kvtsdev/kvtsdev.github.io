@@ -133,13 +133,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: 'URL-mirror ｜ Mirror any link, letting you open malicious links remotely, bypass country blocks, and Wi-FI restrictions',
                 codeUrl: 'https://kvts.vercel.app',
                 downloadUrl: '',
-                buttonText: 'visit web'  // Specify unique text for this project
+                buttonText: 'visit web' 
+                
             },
             {
                 name: 'nullchat ｜ under-the-radar file transfer and messaging app.',
                 codeUrl: '',
                 downloadUrl: '',
-                buttonText: 'coming soon...'  // Specify unique text for this project
+                buttonText: 'coming soon...' 
+                
             }
         ];
     
@@ -152,13 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
             const projectText = document.createElement('p');
             projectText.className = 'output';
-            projectText.innerText = `> ${project.name}`; // Keep it terminal-like
-    
+            projectText.innerText = `> ${project.name}`;
             const viewButton = document.createElement('button');
             viewButton.className = 'command-btn';
-            viewButton.innerText = project.buttonText;  // Use the buttonText property for each project
+            viewButton.innerText = project.buttonText;  
             viewButton.onclick = () => window.open(project.codeUrl, '_blank');
-    
             projectElement.appendChild(projectText);
             projectElement.appendChild(viewButton);
             projectContainer.appendChild(projectElement); 
