@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'about':
                 typeText(
                     "I'm a developer/cybersecurity engineer in central Europe.\n" +
-                    "I enjoy testing systems and websites, coding tools mostly in Python, and keeping the internet safe from disgusting people while staying anonymous.\n"+
-                    "I try to educate others in these fields, as well as teaching people true anonymity.", 
+                    "I enjoy penetration testing systems and websites, coding tools mostly in Python, and keeping the internet safe from disgusting people.\n"+
+                    "I try to educate others in these fields, as well as teaching people complete anonymity. (im paranoid 😭)", 
                     outputSection
                 );
                 break;
