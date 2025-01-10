@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         switch (command) {
             case 'about':
                 typeText(
-                    "I'm a computer science student based in central Europe.\n" +
+                    "I'm a cybersec-engineer, and i enjoy doing networking tools\n" +
                     "I like messing around with pen-testing systems and websites, building tools (mostly in Python), and doing my part to keep the internet a safer place.\n" +
                     "I’m also into teaching others about this stuff, especially how to stay completely anonymous online (paranoia moment 😭).",
                     outputSection
