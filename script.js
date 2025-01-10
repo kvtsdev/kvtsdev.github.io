@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 typeText(
                     "I'm a cybersec-engineer, and i mostly enjoy doing networking. \n" +
                     "I like messing around with pen-testing systems and websites, building tools (mostly in Python), and doing my part to keep the internet a safer place.\n" +
-                    "I’m also into teaching others about this stuff, especially how to stay completely anonymous online (paranoia moment 😭).",
+                    "other sections on this websites will show my projects and stats/overall contributions on the internet ;3.",
                     outputSection
                 );
                 break;
