@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         switch (command) {
             case 'about':
                 typeText(
-                    "I'm a computer science student based in central Europe.\n" +
+                    "I'm a cybersec-engineer student based in central Europe.\n" +
                     "I like messing around with pen-testing systems and websites, building tools (mostly in Python), and doing my part to keep the internet a safer place.\n" +
                     "I’m also into teaching others about this stuff, especially how to stay completely anonymous online (paranoia moment 😭).", 
                     outputSection
@@ -133,16 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 name: 'URL-mirror ｜ Mirror any link, letting you open malicious links remotely, bypass country blocks, and Wi-FI restrictions',
                 codeUrl: 'https://kvts.vercel.app',
-                downloadUrl: '',
-                buttonText: 'visit web' 
-                
+                downloadUrl: 'https://example.com/path/to/your/file.pdf', // Example PDF download URL
+                buttonText: 'visit web'
             },
             {
                 name: 'nullchat ｜ under-the-radar file transfer and messaging app.',
                 codeUrl: '',
-                downloadUrl: '',
-                buttonText: 'coming soon...' 
-                
+                downloadUrl: '', // No PDF link for this project
+                buttonText: 'coming soon...'
             }
         ];
     
@@ -156,16 +154,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const projectText = document.createElement('p');
             projectText.className = 'output';
             projectText.innerText = `> ${project.name}`;
+    
             const viewButton = document.createElement('button');
             viewButton.className = 'command-btn';
-            viewButton.innerText = project.buttonText;  
+            viewButton.innerText = project.buttonText;
             viewButton.onclick = () => window.open(project.codeUrl, '_blank');
             projectElement.appendChild(projectText);
             projectElement.appendChild(viewButton);
-            projectContainer.appendChild(projectElement); 
-        });
     
-        outputSection.appendChild(projectContainer);
-    }
+            // Create the second button only for the "URL-mirror" project
+            if (project.name.startsWith('URL-mirror')) {
+                const downloadButton = document.createElement('button');
+                downloadButton.className = 'command-btn';
+                downloadButton.innerText = 'Download PDF';
+                downloadButton.onclick = () => window.open(project.downloadUrl, '_blank');
+                projectElement.appendChild(downloadButton);
+            }
+    
+            projectContainer.appendChild(projectElement);
+        });
+
+    outputSection.appendChild(projectContainer);
+}
+
+
     
 });
