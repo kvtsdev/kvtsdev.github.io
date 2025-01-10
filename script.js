@@ -3,22 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const outputSection = document.getElementById('output-section');
     let typingInterval;
 
-    // Array of GIF file paths
     const gifs = [
-        'gif1.gif', // Replace with actual file names or URLs
+        'gif1.gif', 
         'gif2.gif',
         'gif3.gif',
         'gif4.gif',
         'gif5.gif'
     ];
 
-    // Select a random GIF
     function setRandomBackground() {
         const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
         document.body.style.backgroundImage = `url('${randomGif}')`;
     }
 
-    // Call the function to set the random background on page load
     setRandomBackground();
 
     function showTime() {
@@ -95,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         switch (command) {
             case 'about':
                 typeText(
-                    "I'm a cybersec-engineer, and i enjoy doing networking tools\n" +
+                    "I'm a cybersec-engineer, and i mostly enjoy doing networking. \n" +
                     "I like messing around with pen-testing systems and websites, building tools (mostly in Python), and doing my part to keep the internet a safer place.\n" +
                     "I’m also into teaching others about this stuff, especially how to stay completely anonymous online (paranoia moment 😭).",
                     outputSection
