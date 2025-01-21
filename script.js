@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 buttonText: 'visit web'
             },
             {
-                name: 'nullchat ｜ under-the-radar file transfer and messaging app.',
+                name: 'pyhash ｜ cross-platform file integrity checker',
                 codeUrl: '',
                 downloadUrl: '',
                 buttonText: 'coming soon...'
