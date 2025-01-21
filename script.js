@@ -147,8 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 name: 'pyhash ｜ cross-platform file integrity checker',
                 codeUrl: '',
-                downloadUrl: '',
-                buttonText: 'coming soon...'
+                downloadUrl: 'https://github.com/meowistic/pyhash/raw/refs/heads/main/pyhash.exe',
+                buttonText: 'download (.exe)'
             }
         ];
 
