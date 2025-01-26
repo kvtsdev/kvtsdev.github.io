@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sourceCodeUrl: 'https://github.com/meowistic/pyhash', 
         },
         {
-            name: 'nekolyze ｜ Analyze, categorize, and secure web traffic intelligently',
+            name: 'nekolyze ｜ An overprotective file scanner. Scan files by malware signatures, with over 17,000 algorithms. ',
             codeUrl: 'https://nekolyze.vercel.app', 
             mindmapUrl: '', 
             buttonText: 'visit web'
