@@ -120,6 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const websitesText = document.createElement('span');
                 websitesText.innerText = " websites";
                 outputSection.appendChild(websitesText);
+
+                const abandonedText = document.createElement('span');
+                abandonedText.style.color = 'grey';
+                abandonedText.innerText = " (I've abandoned and quit web exploitation)";
+                outputSection.appendChild(abandonedText);
+
                 break;
             case 'projects':
                 showProjects();
@@ -150,15 +156,15 @@ document.addEventListener('DOMContentLoaded', () => {
             sourceCodeUrl: 'https://github.com/meowistic/pyhash', 
         },
         {
-            name: 'nekolyze ｜ An overprotective file scanner. Scan files by malware signatures, with over 17,000 algorithms. ',
+            name: 'nekolyze ｜ An overprotective file scanner - Scan files by malware signatures, with over 17,000 algorithms. ',
             codeUrl: 'https://nekolyze.vercel.app', 
             mindmapUrl: '', 
             buttonText: 'visit web'
         },
         {
-            name: 'Coming Soon ｜ coming soon... maybe?',
+            name: 'Coming Soon ｜ ...maybe?',
             codeUrl: null,
-            buttonText: 'coming soon'
+            buttonText: 'nothing here yet'
         }
     ];
 
@@ -219,3 +225,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
+
+function updateDiscordStatus() {
+    const userId = "958318834857672754"; 
+    fetch(`https://api.lanyard.rest/v1/users/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const status = data.data.discord_status;
+                const statusEmoji = {
+                    online: "🟢 online",
+                    idle: "🌙 idle",
+                    dnd: "⛔ do not disturb",
+                    offline: "⚫ offline"
+                };
+                
+                document.getElementById('discord-status').innerHTML = `> Discord: ${statusEmoji[status] || "Unknown"}`;
+            }
+        })
+        .catch(error => console.error("Failed to fetch Discord status:", error));
+}
+
+updateDiscordStatus();
+setInterval(updateDiscordStatus, 10000); 
