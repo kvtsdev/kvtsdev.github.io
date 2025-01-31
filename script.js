@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const disarmedBridgesCount = document.createElement('span');
                 outputSection.appendChild(disarmedBridgesCount);
-                countUp(disarmedBridgesCount, 4276, 3000);
+                countUp(disarmedBridgesCount, 4276, 1500);
 
                 const vulnerabilitiesText = document.createElement('p');
                 vulnerabilitiesText.className = 'output';
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const vulnerabilitiesCount = document.createElement('span');
                 outputSection.appendChild(vulnerabilitiesCount);
-                countUp(vulnerabilitiesCount, 143, 3000);
+                countUp(vulnerabilitiesCount, 143, 1500);
 
                 const websitesText = document.createElement('span');
                 websitesText.innerText = " websites";
